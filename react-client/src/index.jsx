@@ -8,17 +8,19 @@ class App extends React.Component {
     this.state = {
       registrationMode: false
     }
+
+    this.handleCreateUserClick = this.handleCreateUserClick.bind(this);
   }
 
-  handleCreateUserClick(clickEvent) {
+  handleCreateUserClick(username, email) {
     (async () => {
       try {
-        const response = await axios.post('/items', { clickEvent });
+        const response = await axios.post('/items', { username, email });
         const data = response.data;
 
         if (data) {
           this.setState({
-            tweets: data
+            registrationMode: true
           })
         }
       } catch (error) {
@@ -32,7 +34,7 @@ class App extends React.Component {
     if (registrationMode) {
       return (
         <div>
-          <RegisterUser />
+          <RegisterUser handleCreateUserClick={this.handleCreateUserClick}/>
         </div>
       )
     } else {
