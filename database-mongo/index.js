@@ -11,9 +11,45 @@ db.once('open', function() {
   console.log('mongoose connected successfully');
 });
 
-var itemSchema = mongoose.Schema({
-  quantity: Number,
-  description: String
+var userSchema = mongoose.Schema({
+  username: String,
+  email: String,
+  hash: String,
+  salt: String,
+  lastLoggedIn: Date,
+  firstName: String,
+  lastName: String,
+  location: String
+});
+
+var eventSchema = mongoose.Schema({
+  title: String,
+  description: String,
+  date: Date,
+  userId: Number,
+  location: {
+    streetAddress: Number,
+    streetName: String,
+    city: String,
+    county: String,
+    postal: Number,
+    formattedAddress: String,
+    latitude: Number,
+    longitude: Number
+  }
+});
+
+var subeventSchema = mongoose.Schema({
+  eventId: Number,
+  userId: Number,
+  comment: String,
+  Media: [{
+    originalName: String,
+    size: String,
+    MIMEtype: String,
+    mediaType: String,
+    S3url: String
+  }]
 });
 
 var Item = mongoose.model('Item', itemSchema);
