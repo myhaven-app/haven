@@ -1,7 +1,9 @@
-var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/test');
+import {} from 'dotenv';
+import mongoose from 'mongoose';
 
-var db = mongoose.connection;
+const mongoUri = `mongodb://${process.env.haven}`;
+
+const db = mongoose.connect(mongoUri, { useMongoClient: true });
 
 db.on('error', function() {
   console.log('mongoose connection error');
@@ -11,7 +13,7 @@ db.once('open', function() {
   console.log('mongoose connected successfully');
 });
 
-var userSchema = mongoose.Schema({
+const userSchema = mongoose.Schema({
   username: String,
   email: String,
   hash: String,
@@ -22,7 +24,7 @@ var userSchema = mongoose.Schema({
   location: String
 });
 
-var eventSchema = mongoose.Schema({
+const eventSchema = mongoose.Schema({
   title: String,
   description: String,
   date: Date,
@@ -39,7 +41,7 @@ var eventSchema = mongoose.Schema({
   }
 });
 
-var subeventSchema = mongoose.Schema({
+const subeventSchema = mongoose.Schema({
   eventId: Number,
   userId: Number,
   comment: String,
@@ -52,9 +54,9 @@ var subeventSchema = mongoose.Schema({
   }]
 });
 
-var Item = mongoose.model('Item', itemSchema);
+const Item = mongoose.model('Item', itemSchema);
 
-var selectAll = function(callback) {
+const selectAll = function(callback) {
   Item.find({}, function(err, items) {
     if(err) {
       callback(err, null);
