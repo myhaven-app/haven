@@ -11,12 +11,15 @@ class App extends React.Component {
     }
 
     this.handleRegisterUserClick = this.handleRegisterUserClick.bind(this);
+    this.handleCreateUserClick = this.handleCreateUserClick.bind(this);
   }
 
-  handleRegisterUserClick(username, email) {
+  handleRegisterUserClick(username, email, password) {
+    // this should communicate with the Node server and then pass to MongoDB
+    // salt the password and then pass it into the axios post request
     (async () => {
       try {
-        const response = await axios.post('/items', { username, email });
+        const response = await axios.post('/items', { username, email, saltedPassword });
         const data = response.data;
 
         if (data) {
