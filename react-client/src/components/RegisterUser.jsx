@@ -22,7 +22,11 @@ class RegisterUser extends React.Component {
       <div>
         Please register to create a sweep event or post additional information
 
-        <input className='UserName'/>
+        <input className='UserName'
+          type="text"
+          value={this.state.username}
+          onChange={event => this.handleUsernameEntry(event)}
+        />
         <input className='Email'/>
         <input className='Password'/>
         <input className='passwordConfirm'/>

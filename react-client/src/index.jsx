@@ -7,7 +7,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      registrationMode: false
+      registrationMode: true
     }
 
     this.handleRegisterUserClick = this.handleRegisterUserClick.bind(this);
