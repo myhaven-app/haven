@@ -12,7 +12,7 @@ class RegisterUser extends React.Component {
     if (this.props.signup === true) {
       this.state.signup = true;
     }
-    this.handleCreateUserClick = this.handleCreateUserClick.bind(this)
+    this.handleRegisterUserClick = this.props.handleRegisterUserClick.bind(this)
   }
 
   // password matching method
@@ -28,7 +28,7 @@ class RegisterUser extends React.Component {
         <input className='passwordConfirm'/>
         <button
           onClick={() =>
-            this.handleCreateUserClick(
+            this.handleRegisterUserClick(
               this.state.username,
               this.state.email,
               this.state.password)}
