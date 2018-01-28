@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import RegisterUser from './components/RegisterUser.jsx';
+import Upload from './components/Upload.jsx';
 
 class App extends React.Component {
   constructor(props) {
@@ -44,11 +45,11 @@ class App extends React.Component {
       )
     } else {
     return (<div>
-        <button
-          handleCreateUserClick={this.handleCreateUserClick}>
+        <button>
           Create User
         </button>
       <h1>DUMMY EVENT TEXT</h1>
+      <Upload />
     </div>)
     }
   }
