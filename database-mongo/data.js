@@ -51,7 +51,7 @@ const generateSubevent = async () => {
     Media: [{
       originalName: 'stuff.jpg',
       size: '12345',
-      MIMEtype: 'jpg',
+      MIMEtype: 'image/jpeg',
       mediaType: 'img',
       S3url: 'https://i.imgur.com/1yT2ZTX.jpg'
     }]
@@ -101,4 +101,4 @@ const generateNSubevents = async (n) => {
 
 // generateNUsers(15);
 // generateNEvents(20);
-generateNSubevents(20);
+// generateNSubevents(20);
