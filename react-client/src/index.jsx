@@ -11,6 +11,7 @@ class App extends React.Component {
     }
 
     this.handleRegisterUserClick = this.handleRegisterUserClick.bind(this);
+    this.handleCreateUserClick = this.handleCreateUserClick.bind(this);
   }
 
   handleRegisterUserClick(username, email) {
