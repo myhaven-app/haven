@@ -9,10 +9,10 @@ class App extends React.Component {
       registrationMode: false
     }
 
-    this.handleCreateUserClick = this.handleCreateUserClick.bind(this);
+    this.handleRegisterUserClick = this.handleRegisterUserClick.bind(this);
   }
 
-  handleCreateUserClick(username, email) {
+  handleRegisterUserClick(username, email) {
     (async () => {
       try {
         const response = await axios.post('/items', { username, email });
@@ -29,18 +29,26 @@ class App extends React.Component {
     })();
   }
 
+  handleCreateUserClick() {
+    this.setState({
+      registrationMode: true
+    })
+  }
 
   render () {
-    if (registrationMode) {
+    if (this.state.registrationMode) {
       return (
         <div>
-          <RegisterUser handleCreateUserClick={this.handleCreateUserClick}/>
+          <RegisterUser handleRegisterUserClick={this.handleRegisterUserClick}/>
         </div>
       )
     } else {
     return (<div>
-      <h1>Item List</h1>
-      <List items={this.state.items}/>
+        <button
+          handleCreateUserClick={this.handleCreateUserClick}>
+          Create User
+        </button>
+      <h1>DUMMY EVENT TEXT</h1>
     </div>)
     }
   }
