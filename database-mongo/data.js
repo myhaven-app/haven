@@ -1,5 +1,5 @@
-import faker from 'faker';
-import {db, User, Event, Subevent} from './index.js';
+const faker = require('faker');
+const db = require('./index.js');
 
 const generateUser = () => {
   let userFirstName = faker.name.firstName();
@@ -24,13 +24,13 @@ const generateEvent = async () => {
     title: 'Sample Event Title',
     description: 'Sample Event Description',
     date: new Date(),
-    userId: await User.findOne({}),
+    userId: await db.User.findOne({})._id,
     location: {
       streetAddress: 1600,
       streetName: 'Amphitheatre Parkway',
       city: 'Mountain View',
       county: 'Santa Clara County',
-      state: 'State'
+      state: 'State',
       postal: 94043,
       formattedAddress: '1600 Amphitheatre Parkway, Mountain View, CA',
       latitude: 37.4224764,
@@ -38,12 +38,13 @@ const generateEvent = async () => {
     }
   }
 
+  console.log('fake event is', fakeEvent);
   return fakeEvent;
 }
 
 const generateSubevent = async () => {
+  let mainEvent = await db.Event.findOne({});
   let fakeSubevent = {
-    let mainEvent = await Event.findOne({});
     eventId: mainEvent.ObjectId,
     userId: mainEvent.userId,
     comment: 'Sample comment about an event',
@@ -61,10 +62,12 @@ const generateSubevent = async () => {
 
 const generateNUsers = async (n) => {
   for (let i = 1; i <= n; i++) {
-    let fakeUser = new User(generateUser());
+    let fakeUser = new db.User(generateUser());
     await fakeUser.save((err, data) => {
       if (err) {
         console.log(`error saving with ${err}`);
+      } else {
+        console.log(`user saved with ${data}`);
       }
     })
   }
@@ -72,10 +75,12 @@ const generateNUsers = async (n) => {
 
 const generateNEvents = async (n) => {
   for (let i = 1; i <= n; i++) {
-    let fakeEvent = new Event(generateEvent());
+    let fakeEvent = new db.Event(await generateEvent());
     await fakeEvent.save((err, data) => {
       if (err) {
         console.log(`error saving with ${err}`);
+      } else {
+        console.log(`event saved with ${data}`);
       }
     })
   }
@@ -83,14 +88,17 @@ const generateNEvents = async (n) => {
 
 const generateNSubevents = async (n) => {
   for (let i = 1; i <= n; i++) {
-    let fakeSubevent = new Subevent(generateSubevent());
+    let fakeSubevent = new db.Subevent(await generateSubevent());
     await fakeSubevent.save((err, data) => {
       if (err) {
         console.log(`error saving with ${err}`);
+      } else {
+        console.log(`user saved with ${data}`);
       }
     })
   }
 }
 
-
-generateNUsers(15);
+// generateNUsers(15);
+// generateNEvents(20);
+generateNSubevents(20);
