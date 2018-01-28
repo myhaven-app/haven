@@ -1,5 +1,5 @@
-import {} from 'dotenv';
-import mongoose from 'mongoose';
+const {} = require('dotenv/config');
+const mongoose  = require('mongoose');
 
 const mongoUri = `mongodb://${process.env.haven}`;
 
@@ -54,7 +54,7 @@ const subeventSchema = mongoose.Schema({
   }]
 });
 
-const Item = mongoose.model('Item', itemSchema);
+//const Item = mongoose.model('Item', itemSchema);
 
 const selectAll = function(callback) {
   Item.find({}, function(err, items) {
