@@ -1,5 +1,5 @@
-import {} from 'dotenv';
-import mongoose from 'mongoose';
+const {} = require('dotenv/config');
+const mongoose  = require('mongoose');
 
 const mongoUri = `mongodb://${process.env.haven}`;
 
@@ -54,7 +54,6 @@ const subeventSchema = mongoose.Schema({
     S3url: String
   }]
 });
-
 
 const User = mongoose.model('User', userSchema);
 const Event = mongoose.model('Event', eventSchema);
