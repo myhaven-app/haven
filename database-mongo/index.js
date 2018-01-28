@@ -1,12 +1,13 @@
-const {} = require('dotenv/config');
+// const {} = require('dotenv/config');
+require('dotenv').config()
 const mongoose  = require('mongoose');
 
 const mongoUri = `mongodb://${process.env.haven}`;
 
 const db = mongoose.connect(mongoUri, { useMongoClient: true });
 
-db.on('error', function() {
-  console.log('mongoose connection error');
+db.on('error', function(err) {
+  console.log('mongoose connection error with ', err);
 });
 
 db.once('open', function() {
