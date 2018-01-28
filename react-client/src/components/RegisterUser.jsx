@@ -11,7 +11,6 @@ class RegisterUser extends React.Component {
       passwordConfirm: '',
       passwordMissmatch: false,  //displays error if user has password and confirmed password that don't match
       submitError: false, //displays an error if the server returns a user/password error
-      // loginError: false
     }
     if (this.props.signup === true) {
       this.state.signup = true;
@@ -20,8 +19,8 @@ class RegisterUser extends React.Component {
   }
 
   syncUserInput (e) {
-    //saves the input from the user into the state
-    //needs to  save in the state so it can by in sync with the values in the inputs
+    //saves the input from the user into a state
+    //to check if passwords match
     var newState = {};
     var passwordMissmatch;
     var oldPasswordMissmatch = this.state.passwordMissmatch;
