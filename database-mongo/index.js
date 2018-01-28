@@ -34,6 +34,7 @@ const eventSchema = mongoose.Schema({
     streetName: String,
     city: String,
     county: String,
+    state: String,
     postal: Number,
     formattedAddress: String,
     latitude: Number,
@@ -54,16 +55,13 @@ const subeventSchema = mongoose.Schema({
   }]
 });
 
-//const Item = mongoose.model('Item', itemSchema);
+const User = mongoose.model('User', userSchema);
+const Event = mongoose.model('Event', eventSchema);
+const Subevent = mongoose.model('Subevent', subeventSchema);
 
-const selectAll = function(callback) {
-  Item.find({}, function(err, items) {
-    if(err) {
-      callback(err, null);
-    } else {
-      callback(null, items);
-    }
-  });
+module.exports = {
+  db: db,
+  User: User,
+  Event: Event,
+  Subevent: Subevent
 };
-
-module.exports.selectAll = selectAll;
